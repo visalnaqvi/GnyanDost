@@ -1,0 +1,16 @@
+
+> padaepartner@0.1.0 dev
+> next dev -p 3002
+
+   ▲ Next.js 15.1.7
+   - Local:        http://localhost:3002
+   - Network:      http://10.190.0.2:3002
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 2.7s
+ ○ Compiling /api/generate-blog ...
+ ✓ Compiled /api/generate-blog in 3.1s (462 modules)
+✅ Validation passed. Generating blog TSX code...
+ℹ️ Starting GitHub update process...
+ℹ️ adding to git
