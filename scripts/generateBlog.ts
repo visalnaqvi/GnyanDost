@@ -117,7 +117,8 @@ async function updateCategoryFile(existingBlogsData: Blog[], newBlog: string) {
       categoryData[categoryIndex] = currentCategory as Category
       logSuccess("Category file updated successfully")
       fs.writeFileSync(
-        process.env.CATEGORY_FILE_PATH || "/data/category/data.json",
+        process.cwd() + process.env.CATEGORY_FILE_PATH ||
+          "/data/category/data.json",
         JSON.stringify(categoryData, null, 2)
       )
       await addTogit(
@@ -338,15 +339,18 @@ export async function generateBlogTSXCode(blogRequestData: BlogRequestData) {
 
     blogsData.unshift(newBlogMeta)
     fs.mkdirSync(
-      path.dirname(`app/blogs/${category}/${year}/${slug}/page.tsx`),
+      path.dirname(
+        process.cwd() + `app/blogs/${category}/${year}/${slug}/page.tsx`
+      ),
       {recursive: true}
     )
     fs.writeFileSync(
-      `app/blogs/${category}/${year}/${slug}/page.tsx`,
+      process.cwd() + `app/blogs/${category}/${year}/${slug}/page.tsx`,
       finalContent
     )
     fs.writeFileSync(
-      process.env.BLOGS_FILE_PATH || "/data/blogs/2025/data.json",
+      process.cwd() + process.env.BLOGS_FILE_PATH ||
+        "/data/blogs/2025/data.json",
       JSON.stringify(blogsData, null, 2)
     )
     logInfo("Updating data files...")
