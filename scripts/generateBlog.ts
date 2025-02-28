@@ -10,7 +10,7 @@ const blogsData: Blog[] = blogs as Blog[]
 import {BlogRequestData} from "@/types/blogRequestData"
 import fs from "fs"
 import path from "path"
-import {exec} from "child_process"
+import {execSync} from "child_process"
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "test-api-key",
 })
@@ -89,11 +89,14 @@ async function addTogit(
     //   ref: process.env.GITHUB_REPO_REF || "",
     //   sha: commit.data.sha,
     // })
-
-    exec(`git add .`)
-    exec(`git commit -m "Update blog and category files"`)
-    exec(`git push`)
-
+logInfo("adding to git")
+        execSync("git add .", {stdio: "inherit"})
+	logInfo("commitign to git")
+    execSync('git commit -m "Update blog and category files"', {
+      stdio: "inherit",
+    })
+    logInfo("pushing to git")
+    execSync("git push", {stdio: "inherit"})
     logSuccess("Successfully updated GitHub repository")
   } catch (error: unknown) {
     logError("Failed to update GitHub", error)
@@ -293,10 +296,10 @@ export async function generateBlogTSXCode(blogRequestData: BlogRequestData) {
     description,
     image,
   } = blogRequestData as BlogRequestData
-
+addTogit("","","","")
   logInfo(`Starting blog generation process for: "${topic}"`)
-
   try {
+	  /*
     logInfo("Generating blog inner content...")
     logInfo(process.cwd() +  process.env.CATEGORY_FILE_PATH)
     logInfo(process.cwd() +  process.env.BLOG_FILE_PATH)
@@ -374,7 +377,7 @@ export async function generateBlogTSXCode(blogRequestData: BlogRequestData) {
     )
     logInfo("Updating data files...")
     await updateDataFile(blogsData as Blog[], finalContent)
-
+*/
     logSuccess("Blog generation completed successfully")
   } catch (error) {
     logError("Failed to generate blog", error)
