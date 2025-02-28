@@ -340,12 +340,12 @@ export async function generateBlogTSXCode(blogRequestData: BlogRequestData) {
     blogsData.unshift(newBlogMeta)
     fs.mkdirSync(
       path.dirname(
-        process.cwd() + `app/blogs/${category}/${year}/${slug}/page.tsx`
+        process.cwd() + `/app/blogs/${category}/${year}/${slug}/page.tsx`
       ),
       {recursive: true}
     )
     fs.writeFileSync(
-      process.cwd() + `app/blogs/${category}/${year}/${slug}/page.tsx`,
+      process.cwd() + `/app/blogs/${category}/${year}/${slug}/page.tsx`,
       finalContent
     )
     fs.writeFileSync(
