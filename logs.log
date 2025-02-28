@@ -27,3 +27,14 @@
 ✅ Category file updated successfully
 ℹ️ Starting GitHub update process...
 ℹ️ adding to git
+ℹ️ commitign to git
+[GyanDost f36c0b3] Update blog and category files
+ 3 files changed, 90 insertions(+), 44 deletions(-)
+ℹ️ pushing to git
+To github.com:visalnaqvi/GyanDost.git
+   cdb1ef0..f36c0b3  GyanDost -> GyanDost
+✅ Successfully updated GitHub repository
+✅ Blog generation completed successfully
+ POST /api/generate-blog 200 in 39431ms
+ ✓ Compiled in 241ms (213 modules)
+------------------------------------------
