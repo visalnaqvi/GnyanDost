@@ -37,4 +37,3 @@ To github.com:visalnaqvi/GyanDost.git
 ✅ Blog generation completed successfully
  POST /api/generate-blog 200 in 39431ms
  ✓ Compiled in 241ms (213 modules)
-------------------------------------------
