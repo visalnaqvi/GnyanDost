@@ -310,12 +310,19 @@ export async function generateBlogTSXCode(blogRequestData: BlogRequestData) {
     logInfo(
       `${process.env.BLOGS_DATADUMP}/${category}/${year}/${slug}/page.tsx`
     )
+
+    fs.mkdirSync(
+      path.dirname(
+        process.env.CATEGORY_HISTORY ||
+          "/home/visalnaqvi/datadump/GyanDost/category/data.json"
+      ),
+      {recursive: true}
+    )
     fs.writeFileSync(
       process.env.CATEGORY_HISTORY ||
         "/home/visalnaqvi/datadump/GyanDost/category/data.json",
       JSON.stringify({hello: "world"}, null, 2)
     )
-
     fs.mkdirSync(
       path.dirname(
         `${process.env.BLOGS_DATADUMP}/${category}/${year}/${slug}/page.tsx`
@@ -326,6 +333,14 @@ export async function generateBlogTSXCode(blogRequestData: BlogRequestData) {
       `${process.env.BLOGS_DATADUMP}/${category}/${year}/${slug}/page.tsx`,
       "hello world"
     )
+    fs.mkdirSync(
+      path.dirname(
+        process.env.BLOGS_HISTORY ||
+          "/home/visalnaqvi/datadump/GyanDost/blogs_history/data.json"
+      ),
+      {recursive: true}
+    )
+
     fs.writeFileSync(
       process.env.BLOGS_HISTORY ||
         "/home/visalnaqvi/datadump/GyanDost/blogs_history/data.json",
