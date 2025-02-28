@@ -8,141 +8,17 @@
    - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 3.1s
+ ✓ Ready in 3s
  ○ Compiling /api/generate-blog ...
- ✓ Compiled /api/generate-blog in 3.5s (462 modules)
+ ✓ Compiled /api/generate-blog in 3.7s (462 modules)
 ✅ Validation passed. Generating blog TSX code...
 ℹ️ Starting blog generation process for: "CUET UG 2025 Preparation: Subject-Wise Study Plan"
 ℹ️ Generating blog inner content...
+ℹ️ /home/visalnaqvi/GyanDost/data/category/data.json
+ℹ️ /home/visalnaqvi/GyanDost/data/blogs/2025/data.json
+ℹ️ /home/visalnaqvi/GyanDost/app/blogs/cuet-ug/2025/CUET-UG-2025-Preparation-Strategy/page.tsx
 ℹ️ Generating blog content for topic: "CUET UG 2025 Preparation: Subject-Wise Study Plan"
-✅ Blog content generated successfully
-ℹ️ Generating complete TSX code...
-ℹ️ Formatting final blog content...
-❌ Failed to generate blog
-Error details: Error: ENOENT: no such file or directory, open '/data/blogs/2025/data.json'
-    at fs (scripts/generateBlog.ts:348:4)
-    at async POST (app/api/generate-blog/route.ts:202:6)
-  346 |       finalContent
-  347 |     )
-> 348 |     fs.writeFileSync(
-      |    ^
-  349 |       process.env.BLOGS_FILE_PATH || "/data/blogs/2025/data.json",
-  350 |       JSON.stringify(blogsData, null, 2)
-  351 |     ) {
-  errno: -2,
-  syscall: 'open',
-  code: 'ENOENT',
-  path: '/data/blogs/2025/data.json'
-}
-❌ Background Blog Generation Error: Error: ENOENT: no such file or directory, open '/data/blogs/2025/data.json'
-    at fs (scripts/generateBlog.ts:348:4)
-    at async POST (app/api/generate-blog/route.ts:202:6)
-  346 |       finalContent
-  347 |     )
-> 348 |     fs.writeFileSync(
-      |    ^
-  349 |       process.env.BLOGS_FILE_PATH || "/data/blogs/2025/data.json",
-  350 |       JSON.stringify(blogsData, null, 2)
-  351 |     ) {
-  errno: -2,
-  syscall: 'open',
-  code: 'ENOENT',
-  path: '/data/blogs/2025/data.json'
-}
- POST /api/generate-blog 200 in 49330ms
- ✓ Compiled in 590ms (462 modules)
- ✓ Compiled in 32ms
- ✓ Compiled /api/generate-blog in 286ms (213 modules)
-✅ Validation passed. Generating blog TSX code...
-ℹ️ Starting blog generation process for: "CUET UG 2025 Preparation: Subject-Wise Study Plan"
-ℹ️ Generating blog inner content...
-ℹ️ Generating blog content for topic: "CUET UG 2025 Preparation: Subject-Wise Study Plan"
-✅ Blog content generated successfully
-ℹ️ Generating complete TSX code...
-ℹ️ Formatting final blog content...
-ℹ️ Updating data files...
-ℹ️ Updating category file...
-✅ Category file updated successfully
-❌ Failed to update category file
-Error details: Error: ENOENT: no such file or directory, open '/home/visalnaqvi/GyanDostdata/category/data.json'
-    at fs (scripts/generateBlog.ts:119:6)
-    at updateCategoryFile (scripts/generateBlog.ts:142:10)
-    at updateDataFile (scripts/generateBlog.ts:357:10)
-    at async POST (app/api/generate-blog/route.ts:202:6)
-  117 |       categoryData[categoryIndex] = currentCategory as Category
-  118 |       logSuccess("Category file updated successfully")
-> 119 |       fs.writeFileSync(
-      |      ^
-  120 |         process.cwd() + process.env.CATEGORY_FILE_PATH ||
-  121 |           "/data/category/data.json",
-  122 |         JSON.stringify(categoryData, null, 2) {
-  errno: -2,
-  syscall: 'open',
-  code: 'ENOENT',
-  path: '/home/visalnaqvi/GyanDostdata/category/data.json'
-}
-❌ Error updating data.json
-Error details: Error: ENOENT: no such file or directory, open '/home/visalnaqvi/GyanDostdata/category/data.json'
-    at fs (scripts/generateBlog.ts:119:6)
-    at updateCategoryFile (scripts/generateBlog.ts:142:10)
-    at updateDataFile (scripts/generateBlog.ts:357:10)
-    at async POST (app/api/generate-blog/route.ts:202:6)
-  117 |       categoryData[categoryIndex] = currentCategory as Category
-  118 |       logSuccess("Category file updated successfully")
-> 119 |       fs.writeFileSync(
-      |      ^
-  120 |         process.cwd() + process.env.CATEGORY_FILE_PATH ||
-  121 |           "/data/category/data.json",
-  122 |         JSON.stringify(categoryData, null, 2) {
-  errno: -2,
-  syscall: 'open',
-  code: 'ENOENT',
-  path: '/home/visalnaqvi/GyanDostdata/category/data.json'
-}
-❌ Failed to generate blog
-Error details: Error: ENOENT: no such file or directory, open '/home/visalnaqvi/GyanDostdata/category/data.json'
-    at fs (scripts/generateBlog.ts:119:6)
-    at updateCategoryFile (scripts/generateBlog.ts:142:10)
-    at updateDataFile (scripts/generateBlog.ts:357:10)
-    at async POST (app/api/generate-blog/route.ts:202:6)
-  117 |       categoryData[categoryIndex] = currentCategory as Category
-  118 |       logSuccess("Category file updated successfully")
-> 119 |       fs.writeFileSync(
-      |      ^
-  120 |         process.cwd() + process.env.CATEGORY_FILE_PATH ||
-  121 |           "/data/category/data.json",
-  122 |         JSON.stringify(categoryData, null, 2) {
-  errno: -2,
-  syscall: 'open',
-  code: 'ENOENT',
-  path: '/home/visalnaqvi/GyanDostdata/category/data.json'
-}
-❌ Background Blog Generation Error: Error: ENOENT: no such file or directory, open '/home/visalnaqvi/GyanDostdata/category/data.json'
-    at fs (scripts/generateBlog.ts:119:6)
-    at updateCategoryFile (scripts/generateBlog.ts:142:10)
-    at updateDataFile (scripts/generateBlog.ts:357:10)
-    at async POST (app/api/generate-blog/route.ts:202:6)
-  117 |       categoryData[categoryIndex] = currentCategory as Category
-  118 |       logSuccess("Category file updated successfully")
-> 119 |       fs.writeFileSync(
-      |      ^
-  120 |         process.cwd() + process.env.CATEGORY_FILE_PATH ||
-  121 |           "/data/category/data.json",
-  122 |         JSON.stringify(categoryData, null, 2) {
-  errno: -2,
-  syscall: 'open',
-  code: 'ENOENT',
-  path: '/home/visalnaqvi/GyanDostdata/category/data.json'
-}
- POST /api/generate-blog 200 in 33918ms
- ✓ Compiled in 253ms (249 modules)
-   Reload env: .env
- ✓ Compiled in 161ms (249 modules)
- ✓ Compiled /api/generate-blog in 357ms (213 modules)
-✅ Validation passed. Generating blog TSX code...
-ℹ️ Starting blog generation process for: "CUET UG 2025 Preparation: Subject-Wise Study Plan"
-ℹ️ Generating blog inner content...
-ℹ️ Generating blog content for topic: "CUET UG 2025 Preparation: Subject-Wise Study Plan"
+ ✓ Compiled in 966ms (462 modules)
 ✅ Blog content generated successfully
 ℹ️ Generating complete TSX code...
 ℹ️ Formatting final blog content...

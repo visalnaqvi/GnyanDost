@@ -298,6 +298,31 @@ export async function generateBlogTSXCode(blogRequestData: BlogRequestData) {
 
   try {
     logInfo("Generating blog inner content...")
+    logInfo(process.cwd() +  process.env.CATEGORY_FILE_PATH)
+    logInfo(process.cwd() +  process.env.BLOG_FILE_PATH)
+    logInfo(process.cwd()+`/app/blogs/${category}/${year}/${slug}/page.tsx`)
+          fs.writeFileSync(
+        process.cwd() + process.env.CATEGORY_FILE_PATH ||
+          "/data/category/data.json",
+        JSON.stringify({"hello":"world"}, null, 2)
+      )
+
+      fs.mkdirSync(
+      path.dirname(
+        process.cwd() + `/app/blogs/${category}/${year}/${slug}/page.tsx`
+      ),
+      {recursive: true}
+    )
+    fs.writeFileSync(
+      process.cwd() + `/app/blogs/${category}/${year}/${slug}/page.tsx`,
+      "hello world"
+    )
+        fs.writeFileSync(
+      process.cwd() + process.env.BLOGS_FILE_PATH ||
+        "/data/blogs/2025/data.json",
+      JSON.stringify({"hello":"world"}, null, 2)
+    )
+	 
     const blogContent = await generateBlogInnerCode(
       keyword,
       wordLength,
