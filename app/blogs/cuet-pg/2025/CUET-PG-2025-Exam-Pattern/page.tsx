@@ -4,6 +4,7 @@ import { Category } from "@/types/category";
 import allCategory from "@/data/category/data.json";
 import Link from 'next/link';
 import { Blog } from '@/types/blog';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: "CUET PG 2025 Exam Pattern",
@@ -17,6 +18,21 @@ const CUET_PG_2025_Exam_Pattern: React.FC = () => {
   return (
     <div className='blog-wrapper'>
       <div className='blog-body'>
+        <div className='author-info'>
+          <div className='author-left'>
+            <div className='author-img'>
+              <Image src="/author.jpg" alt="author" width={80} height={80} />
+            </div>
+            <div className='author-details'>
+              <p className='author-name'>Posted By: Visal Naqvi</p>
+              <p className='author-postion'>Position: Senior Editor</p>
+            </div>
+          </div>
+          <div className='author-right'>
+            <p className='posting-date'>Upload Date: 21 Feb 2025</p>
+            <p className='posting-date'>Keywords: CUET PG Exam</p>
+          </div>
+        </div>
         <h1 className="blog-title">CUET PG 2025 Exam Pattern: A Comprehensive Guide for Aspiring Students</h1>
         <p>In recent years, the importance of standardized entrance examinations for postgraduate studies in India has significantly increased. The <strong>CUET PG</strong> exam, or the Common University Entrance Test for Postgraduate courses, is now an essential stepping stone for students aspiring to pursue higher education in various universities across the country. This blog post will provide you with an in-depth look at the <strong>CUET PG</strong> 2025 exam pattern, helping you strategize effectively for this competitive examination.</p>
 

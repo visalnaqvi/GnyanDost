@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Dr. Anil Sharma",
+    "position": "Professor",
+    "image": "/authors/author1.webp",
+    "blogs": []
+  },
+  {
+    "name": "Prof. Neha Verma",
+    "position": "Assistant Professor",
+    "image": "/authors/author2.webp",
+    "blogs": []
+  },
+  {
+    "name": "Prof. Sunita Kapoor",
+    "position": "Dean",
+    "image": "/authors/author3.webp",
+    "blogs": []
+  },
+  {
+    "name": "Dr. Vikram Chatterjee",
+    "position": "Professor",
+    "image": "/authors/author4.webp",
+    "blogs": []
+  },
+  {
+    "name": "Prof. Priya Nair",
+    "position": "Lecturer",
+    "image": "/authors/author5.webp",
+    "blogs": []
+  },
+  {
+    "name": "Dr. Suresh Patil",
+    "position": "Head of Department",
+    "image": "/authors/author6.webp",
+    "blogs": []
+  },
+  {
+    "name": "Prof. Kavita Reddy",
+    "position": "Senior Lecturer",
+    "image": "/authors/author7.webp",
+    "blogs": []
+  },
+  {
+    "name": "Dr. Alok Mishra",
+    "position": "Professor",
+    "image": "/authors/author8.webp",
+    "blogs": []
+  },
+  {
+    "name": "Prof. Meena Joshi",
+    "position": "Assistant Professor",
+    "image": "/authors/author9.webp",
+    "blogs": []
+  },
+  {
+    "name": "Dr. Rajesh Iyer",
+    "position": "Head of Department",
+    "image": "/authors/author10.webp",
+    "blogs": []
+  }
+]

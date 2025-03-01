@@ -10,6 +10,9 @@ const blogsData: Blog[] = blogs as Blog[]
 import {BlogRequestData} from "@/types/blogRequestData"
 import fs from "fs"
 import path from "path"
+import {Author} from "@/types/author"
+import authorsData from "../data/authors/data.json"
+const authors: Author[] = authorsData as Author[]
 import {execSync} from "child_process"
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "test-api-key",
@@ -34,7 +37,8 @@ async function addTogit(
   existingBlogsData: string,
   newBlog: string,
   existingCategoryData: string,
-  newBlogPath: string
+  newBlogPath: string,
+  authorData: string
 ) {
   logInfo("Starting GitHub update process...")
   try {
@@ -63,6 +67,12 @@ async function addTogit(
           mode: "100644",
           type: "blob",
           content: existingBlogsData,
+        },
+        {
+          path: process.env.AUTHOR_DATA || "",
+          mode: "100644",
+          type: "blob",
+          content: authorData,
         },
         {
           path: newBlogPath,
@@ -103,7 +113,11 @@ async function addTogit(
     throw error
   }
 }
-async function updateCategoryFile(existingBlogsData: Blog[], newBlog: string) {
+async function updateCategoryFile(
+  existingBlogsData: Blog[],
+  newBlog: string,
+  authorData: Author[]
+) {
   logInfo("Updating category file...")
   const newBlogMeta = existingBlogsData[0]
   try {
@@ -128,7 +142,8 @@ async function updateCategoryFile(existingBlogsData: Blog[], newBlog: string) {
         JSON.stringify(existingBlogsData, null, 2),
         newBlog,
         JSON.stringify(categoryData, null, 2),
-        "app/" + newBlogMeta.url + "/page.tsx"
+        "app/" + newBlogMeta.url + "/page.tsx",
+        JSON.stringify(authorData, null, 2)
       )
     } else {
       logError("Category does not exist")
@@ -140,9 +155,13 @@ async function updateCategoryFile(existingBlogsData: Blog[], newBlog: string) {
   }
 }
 
-async function updateDataFile(existingBlogsData: Blog[], newBlog: string) {
+async function updateDataFile(
+  existingBlogsData: Blog[],
+  newBlog: string,
+  authorsData: Author[]
+) {
   try {
-    await updateCategoryFile(existingBlogsData, newBlog)
+    await updateCategoryFile(existingBlogsData, newBlog, authorsData)
   } catch (error) {
     logError("Error updating data.json", error)
     throw error
@@ -213,7 +232,9 @@ function generateCompleteTSXCode(
   description: string,
   slug: string,
   category: string,
-  blogContent: string
+  blogContent: string,
+  authorInfo: Author,
+  keyword: string
 ) {
   return `
       import React from 'react';
@@ -232,6 +253,30 @@ function generateCompleteTSXCode(
         return (
           <div className='blog-wrapper'>
           <div className='blog-body'>
+          <div className='author-info'>
+                    <div className='author-left'>
+                      <div className='author-img'>
+                        <Image src="${
+                          authorInfo.image
+                        }" alt="author of blog ${topic}" width={80} height={80} />
+                      </div>
+                      <div className='author-details'>
+                        <p className='author-name'>Posted By: ${
+                          authorInfo.name
+                        }</p>
+                        <p className='author-postion'>Position: ${
+                          authorInfo.position
+                        }</p>
+                      </div>
+                    </div>
+                    <div className='author-right'>
+                      <p className='posting-date'>Upload Date: ${new Date().toLocaleDateString(
+                        "en-GB",
+                        {day: "numeric", month: "long", year: "numeric"}
+                      )}</p>
+                      <p className='posting-date'>Keywords: ${keyword}</p>
+                    </div>
+                  </div>
             ${blogContent}
           </div>
           <div className='blog-sidebar'>
@@ -347,6 +392,10 @@ export async function generateBlogTSXCode(blogRequestData: BlogRequestData) {
       JSON.stringify({hello: "world"}, null, 2)
     )
 
+    fs.writeFileSync(
+      process.env.AUTHOR_DATA || "data/authors/data.json",
+      JSON.stringify({hello: "world"}, null, 2)
+    )
     const blogContent = await generateBlogInnerCode(
       keyword,
       wordLength,
@@ -357,14 +406,17 @@ export async function generateBlogTSXCode(blogRequestData: BlogRequestData) {
       contentWords,
       note
     )
-
+    const index = Math.floor(Math.random() * 10)
+    const author = authors[index]
     logInfo("Generating complete TSX code...")
     const generatedBlogCode = generateCompleteTSXCode(
       topic,
       description,
       slug,
       category,
-      blogContent
+      blogContent,
+      author,
+      keyword
     )
 
     logInfo("Formatting final blog content...")
@@ -387,9 +439,15 @@ export async function generateBlogTSXCode(blogRequestData: BlogRequestData) {
     }
 
     blogsData.unshift(newBlogMeta)
+    author.blogs.unshift(newBlogMeta)
+    authors[index] = author
     fs.writeFileSync(
       `${process.env.BLOGS_DATADUMP}/${category}/${year}/${slug}/page.tsx`,
       finalContent
+    )
+    fs.writeFileSync(
+      process.env.AUTHOR_DATA || "data/authors/data.json",
+      JSON.stringify(authors, null, 2)
     )
     fs.writeFileSync(
       process.env.BLOGS_HISTORY ||
@@ -397,7 +455,7 @@ export async function generateBlogTSXCode(blogRequestData: BlogRequestData) {
       JSON.stringify(blogsData, null, 2)
     )
     logInfo("Updating data files...")
-    await updateDataFile(blogsData as Blog[], finalContent)
+    await updateDataFile(blogsData as Blog[], finalContent, authors)
 
     logSuccess("Blog generation completed successfully")
   } catch (error) {
